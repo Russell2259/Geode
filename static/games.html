@@ -21,8 +21,9 @@
         fetch('https://api.gh.retronetwork.ml/games')
             .then((res) => res.json())
             .then((games) => {
-                alert(JSON.stringify(games))
-                /*games.forEach(game => {
+                for (let i = 0; i < games.length; i++) {
+                    const game = games[i];
+                    
                     var gameEl = document.createElement('div');
                     gameEl.classList = 'game';
                     gameEl.title = game.name;
@@ -31,8 +32,10 @@
                     gameEl.addEventListener('click', (e) => {
                         alert(game.id);
                     });
-                });*/
-            });
+                }
+            }).catch((e) => {
+                alert(e);
+            })
     </script>
 
     <script src="./assets/js/tab.js"></script>
