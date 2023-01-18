@@ -216,3 +216,7 @@ footer a:hover {
 .game:hover {
   background-color: rgb(0, 0, 0, 0.7);
 }
+
+*, ::before, ::after {
+  box-sizing:inherit;
+}
