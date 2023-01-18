@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | Geode Web Proxy</title>
+</head>
+
+<body>
+    <div class="games">
+
+    </div>
+    <script>
+        /*fetch('/assets/JSON/gs.json')
+            .then((res) => res.json())
+            .then((games) => {
+            });*/
+
+        fetch('https://api.gh.retronetwork.ml/games')
+            .then((res) => res.json())
+            .then((games) => {
+                games.forEach(game => {
+                    var gameEl = document.createElement('div');
+                    gameEl.classList = 'game';
+                    gameEl.title = game.name;
+                    gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
+                    document.querySelector('.games').appendChild(game);
+                    gameEl.addEventListener('click', (e) => {
+                        alert(game.id);
+                    });
+                });
+            });
+    </script>
+
+    <script src="./assets/js/tab.js"></script>
+</body>
+
+</html>
