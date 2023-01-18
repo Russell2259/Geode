@@ -23,12 +23,12 @@
             .then((games) => {
                 for (let i = 0; i < games.length; i++) {
                     const game = games[i];
-                    
+
                     var gameEl = document.createElement('div');
                     gameEl.classList = 'game';
                     gameEl.title = game.name;
                     gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
-                    document.querySelector('.games').appendChild(game);
+                    document.querySelector('.games').appendChild(gameEl);
                     gameEl.addEventListener('click', (e) => {
                         alert(game.id);
                     });
