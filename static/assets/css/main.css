@@ -60,7 +60,6 @@ body {
 }
 
 .logo {
-  width: 150px;
   height: 150px;
 }
 
@@ -158,11 +157,11 @@ footer a:hover {
   cursor: pointer;
 }
 
-.credit input:checked + label::after {
+.credit input:checked+label::after {
   content: "hide license";
 }
 
-.credit input:checked ~ pre {
+.credit input:checked~pre {
   display: block;
 }
 

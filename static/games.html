@@ -22,9 +22,7 @@
         fetch('https://api.gh.retronetwork.ml/games')
             .then((res) => res.json())
             .then((games) => {
-                for (let i = 0; i < games.length; i++) {
-                    const game = games[i];
-
+                games.forEach(game => {
                     var gameEl = document.createElement('div');
                     gameEl.classList = 'game';
                     gameEl.title = game.name;
@@ -33,7 +31,7 @@
                     gameEl.addEventListener('click', (e) => {
                         alert(game.id);
                     });
-                }
+                });
             }).catch((e) => {
                 alert(e);
             })
