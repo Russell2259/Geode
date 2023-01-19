@@ -259,6 +259,10 @@ button:hover {
   width: 100%;
 }
 
+.navbar-logo {
+  width: 30px;
+}
+
 .navbar-item.is-right {
   float: right;
 }
