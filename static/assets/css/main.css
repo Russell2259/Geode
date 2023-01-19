@@ -147,6 +147,7 @@ button {
   border-radius: 50px;
   color: #fff;
   transition: .5s;
+  cursor: pointer;
 }
 
 button:hover {
