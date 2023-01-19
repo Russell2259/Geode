@@ -124,6 +124,7 @@ input {
   border-radius: 50px;
   color: #fff;
   transition: .5s;
+  margin: auto;
 }
 
 input:focus {
