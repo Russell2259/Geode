@@ -20,7 +20,7 @@ body {
   color: white;
 }
 
-.flex-center {
+.is-center {
   display: flex;
   justify-content: center;
 }
