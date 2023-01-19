@@ -292,7 +292,7 @@ button:hover {
   margin-right: 5px;
   color: #fff;
   font-size: 20px;
-  padding-top: var(--navbar-height/2-width);
+  padding-top: var(--navbar-height/2);
 }
 
 .navbar-item:hover {
