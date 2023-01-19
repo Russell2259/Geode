@@ -288,7 +288,7 @@ button:hover {
   margin-right: 5px;
   color: #fff;
   font-size: 20px;
-  padding-top: 45px;
+  padding-top: calc(45px/2);
 }
 
 .navbar-item:hover {
@@ -297,4 +297,8 @@ button:hover {
 
 .is-active {
   background-color: #c3e9ef;
+}
+
+.navbar-item.navbar-logo {
+  padding-top: 0px;
 }
