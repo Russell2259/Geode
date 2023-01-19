@@ -301,3 +301,7 @@ button:hover {
 .navbar-item.navbar-logo {
   padding-top: 0px;
 }
+
+.content {
+  margin-top: 110px;
+}
