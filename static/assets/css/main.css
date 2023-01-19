@@ -259,10 +259,16 @@ button:hover {
   width: 100%;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
   background: #111;
+  z-index: 100;
 }
 
 .navbar-logo img {
-  width: 50px;
+  width: 80px;
+  margin: auto;
+}
+
+.navbar-logo {
+  padding: 10px;
 }
 
 .navbar-item.is-right {
