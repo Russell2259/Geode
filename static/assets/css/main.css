@@ -106,7 +106,7 @@ footer a:hover {
   color: rgba(253, 253, 253, 0.514);
 }
 
-#uv-address {
+input {
   background: none;
   font-family: inherit;
   padding: 0px 17px;
@@ -122,7 +122,29 @@ footer a:hover {
   transition: .5s;
 }
 
-#uv-address:focus {
+input:focus {
+  border: 1px solid rgba(253, 253, 253, 0.514);
+  border-radius: 6px;
+}
+
+button {
+  background: none;
+  font-family: inherit;
+  padding: 0px 17px;
+  height: 48px;
+  border: 1px solid rgb(255, 255, 255, 0.2);
+  color: var(--text-color);
+  border-radius: 3px;
+  outline: none;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 5px;
+  border-radius: 50px;
+  color: #fff;
+  transition: .5s;
+}
+
+button:hover {
   border: 1px solid rgba(253, 253, 253, 0.514);
   border-radius: 6px;
 }
@@ -175,7 +197,6 @@ footer a:hover {
   flex-wrap: wrap;
 }
 
-
 .game {
   display: inline-block;
   vertical-align: middle;
@@ -184,7 +205,7 @@ footer a:hover {
   position: relative;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
-  background-color: #fff;
+  background: none;
   user-select: none;
   transition: 0.5s;
   object-fit: cover;
@@ -224,5 +245,5 @@ footer a:hover {
 }
 
 .game:hover {
-  background-color: rgb(0, 0, 0, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
 }
