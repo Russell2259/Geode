@@ -19,13 +19,8 @@ fetch('/assets/JSON/pages.json')
         
         if (!isMain && !isLogin) {
             window.location.href = '/login';
-            loaded++
         }
         if (isMain && isLogin) {
             window.location.href = '/home';
-            loaded++
-        }
-        if (isMain && !isLogin) {
-            loaded++
         }
     });

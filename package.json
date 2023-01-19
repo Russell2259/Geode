@@ -1,7 +1,7 @@
 {
   "name": "geode-proxy",
   "version": "1.0.0",
-  "description": "Ultraviolet instance",
+  "description": "Geode instance",
   "type": "module",
   "engines": {
     "npm": ">=7.0.0",

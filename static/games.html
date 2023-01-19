@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <form id="uv-form" class="flex-center">
+        <input id="uv-address" type="text" placeholder="Search the games" />
+    </form>
     <div class="games">
 
     </div>
@@ -19,7 +22,7 @@
             .then((games) => {
             });*/
 
-        fetch('https://api.gh.retronetwork.ml/games')
+        fetch('https://gamehubapi.onrender.com/games')
             .then((res) => res.json())
             .then((games) => {
                 for (let i = 0; i < games.length; i++) {
@@ -39,6 +42,13 @@
             })
     </script>
 
+    <footer>
+        <a title="The offcal repository for ultraviolet"
+            href="https://github.com/titaniumnetwork-dev/Ultravioletltraviolet">Ultraviolet</a>
+        <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+        <a title="The official repository for GameHub" href="https://github.com/GameHub88/GameHub">GameHub</a>
+        <a title="The official repository for Geode" href="https://github.com/Russell2259/Geode">GitHub</a>
+    </footer>
     <script src="./assets/js/tab.js"></script>
 </body>
 
