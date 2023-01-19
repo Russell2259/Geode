@@ -1,5 +1,5 @@
 {
-    "main": ["/", "/games"],
-    "all": ["/", "/games"],
+    "main": ["/", "/games", "/settings"],
+    "all": ["/", "/games", "/settings"],
     "third_party": ["http://gh.retronetwork.ml/"]
 }
