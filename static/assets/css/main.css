@@ -260,6 +260,7 @@ button:hover {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
   background: #111;
   z-index: 100;
+  height: 90px;
 }
 
 .navbar-logo img {
@@ -268,7 +269,7 @@ button:hover {
 }
 
 .navbar-logo {
-  padding: 10px;
+  padding: 5px;
 }
 
 .navbar-item.is-right {
@@ -287,7 +288,7 @@ button:hover {
   margin-right: 5px;
   color: #fff;
   font-size: 20px;
-  padding-top: 20px;
+  padding-top: 45px;
 }
 
 .navbar-item:hover {
