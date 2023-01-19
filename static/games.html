@@ -5,19 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
     <title>Games | Geode Web Proxy</title>
 </head>
 
 <body>
     <div class="navbar">
         <a href="/" class="navbar-item navbar-logo">
-            <img src="./assets/img/crystal.png" title="Geode Proxy Logo">
+            <img src="/assets/img/crystal.png" title="Geode Proxy Logo">
         </a>
-        <a href="./games" class="navbar-item">
+        <a href="/games" class="navbar-item">
             Games
         </a>
-        <a href="./settings" class="navbar-item">
+        <a href="/settings" class="navbar-item">
             Settings
         </a>
     </div>
@@ -27,31 +31,6 @@
         <div class="games">
 
         </div>
-        <script>
-            /*fetch('/assets/JSON/gs.json')
-                .then((res) => res.json())
-                .then((games) => {
-                });*/
-
-            fetch('https://api.gh.retronetwork.ml/games')
-                .then((res) => res.json())
-                .then((games) => {
-                    for (let i = 0; i < games.length; i++) {
-                        const game = games[i];
-
-                        var gameEl = document.createElement('div');
-                        gameEl.classList = 'game';
-                        gameEl.title = game.name;
-                        gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
-                        document.querySelector('.games').appendChild(gameEl);
-                        gameEl.addEventListener('click', (e) => {
-                            alert(game.id);
-                        });
-                    }
-                }).catch((e) => {
-                    alert(e);
-                })
-        </script>
     </div>
 
     <footer>
@@ -61,7 +40,8 @@
         <a title="The official repository for GameHub" href="https://github.com/GameHub88/GameHub">GameHub</a>
         <a title="The official repository for Geode" href="https://github.com/Russell2259/Geode">GitHub</a>
     </footer>
-    <script src="./assets/js/tab.js"></script>
+    <script src="/assets/js/tab.js"></script>
+    <script src="/assets/js/game.js"></script>
 </body>
 
 </html>
