@@ -282,6 +282,13 @@ button:hover {
   padding: 14px 16px;
   text-decoration: none;
   float: left;
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.navbar-item a {
+  color: #fff;
 }
 
 .navbar-item:hover:not(.is-active) {
