@@ -247,3 +247,35 @@ button:hover {
 .game:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-item.is-right {
+  float: right;
+}
+
+.navbar-item {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  float: left;
+}
+
+.navbar-item:hover:not(.is-active) {
+  background-color: #111;
+}
+
+.is-active {
+  background-color: #c3e9ef;
+}
