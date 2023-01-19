@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 
-:root {
-  --navbar-height: 100px;
+* {
+  user-select: none;
 }
 
 body {
@@ -14,6 +14,7 @@ body {
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
+  color: #fff;
 }
 
 .fa-magnifying-glass {
@@ -132,6 +133,16 @@ input:focus {
   border-radius: 6px;
 }
 
+input:focus:disabled {
+  border-radius: 50px;
+}
+
+input:disabled {
+  border: 1px solid rgba(255, 0, 0, 0.514);
+  color: rgba(255, 0, 0, 0.514);
+  cursor: not-allowed;
+}
+
 button {
   background: none;
   font-family: inherit;
@@ -153,6 +164,16 @@ button {
 button:hover {
   border: 1px solid rgba(253, 253, 253, 0.514);
   border-radius: 6px;
+}
+
+button:hover:disabled {
+  border-radius: 50px;
+}
+
+button:disabled {
+  border: 1px solid rgba(255, 0, 0, 0.514);
+  color: rgba(255, 0, 0, 0.514);
+  cursor: not-allowed;
 }
 
 .credit {
@@ -260,13 +281,13 @@ button:hover {
   padding: 0;
   overflow: hidden;
   background-color: #333;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
   background: #111;
   z-index: 100;
-  height: var(--navbar-height);
+  height: 100px;
 }
 
 .navbar-logo img {
@@ -303,6 +324,18 @@ button:hover {
 }
 
 .content {
-  margin-top: 110px;
   margin-left: 15px;
+  margin-top: 20px;
+}
+
+.not-bold {
+  font-weight: normal;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-bold {
+  font-weight: bold;
 }
