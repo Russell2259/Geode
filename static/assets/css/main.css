@@ -257,10 +257,12 @@ button:hover {
   position: fixed;
   top: 0;
   width: 100%;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  background: #111;
 }
 
 .navbar-logo img {
-  width: 30px;
+  width: 50px;
 }
 
 .navbar-item.is-right {
