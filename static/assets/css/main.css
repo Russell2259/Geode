@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 
+:root {
+  --navbar-height: 100px;
+}
+
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
@@ -260,7 +264,7 @@ button:hover {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
   background: #111;
   z-index: 100;
-  height: 90px;
+  height: var(--navbar-height);
 }
 
 .navbar-logo img {
@@ -288,7 +292,7 @@ button:hover {
   margin-right: 5px;
   color: #fff;
   font-size: 20px;
-  padding-top: calc(45px/2);
+  padding-top: var(--navbar-height/2-width);
 }
 
 .navbar-item:hover {
