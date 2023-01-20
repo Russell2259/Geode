@@ -44,7 +44,7 @@ fetch('/assets/JSON/gs.json')
         console.log(e);
     })
 
-fetch('https://gamehubapi.onrender.com/games')
+fetch('https://api.gh.retronetwork.ml/games')
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
