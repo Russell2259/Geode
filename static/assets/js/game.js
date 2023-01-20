@@ -1,4 +1,26 @@
+const searchBar = document.querySelector('#search');
+const gameDatabase = document.querySelector('.games');
+const loader = document.querySelector('.ring-loader');
 var loaded = false;
+let loadedCount = 0;
+
+function loadGame(gameId, isGameHub) {
+    gameDatabase.classList.add('is-hidden');
+    if (isGameHub) {
+
+    } else {
+        fetch('/assets/JSON/gs.json')
+            .then((res) => res.json())
+            .then((games) => {
+                games[gameId]
+            });
+    }
+}
+
+/*var newtab = window.open('', 'anotherWindow');
+console.log(newtab);
+newtab.document.write(`<style>* {margin: 0px; overflow: none;} iframe {width: 100vw; height: 100vh;}</style><iframe src="${window.location.href}/games" frameborder="0px"></iframe><script>onbeforeunload = (e) => {e.preventDefault(); return e.returnValue = 'no';}</script>`);
+window.location.href = 'https://google.com';*/
 
 fetch('/assets/JSON/gs.json')
     .then((res) => res.json())
@@ -12,13 +34,14 @@ fetch('/assets/JSON/gs.json')
             gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
-                
+                loadGame(i);
             });
         }
 
         loaded = true;
+        loadedCount += 1;
     }).catch((e) => {
-        alert(e);
+        console.log(e);
     })
 
 fetch('https://gamehubapi.onrender.com/games')
@@ -33,16 +56,17 @@ fetch('https://gamehubapi.onrender.com/games')
             gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
-                alert(game.id);
+                loadGame(game.id, true);
             });
         }
 
         loaded = true;
+        loadedCount += 1;
     }).catch((e) => {
-        console.log(e);
+        loadedCount += 1;
+        throw e;
     })
 
-const searchBar = document.querySelector('#search');
 searchBar.addEventListener('input', (e) => {
     if (loaded) {
         if (searchBar.value) {
@@ -86,8 +110,12 @@ searchBar.addEventListener('input', (e) => {
     }
 })
 
-var searchInterval = setInterval(() => {
-    if (loaded) {
+var loadInterval = setInterval(() => {
+    if (loaded && loadedCount === 2) {
+        clearInterval(loadInterval);
+
+        gameDatabase.classList.remove('is-hidden');
+        loader.classList.add('is-hidden');
         if (searchBar.value) {
             const searchQuery = searchBar.value.toLowerCase();
             let searchResults = 0;
