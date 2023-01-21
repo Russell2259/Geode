@@ -34,20 +34,44 @@ if (window.location.pathname === '/settings') {
         const aboutBlankRedirect = document.querySelector('#about-blank_redirect');
         const tabTitle = document.querySelector('#page-title');
         const tabIcon = document.querySelector('#page-icon');
+        const preventCloseSwitch = document.querySelector('#prevent-close_switch');
 
         aboutBlankSwitch.checked = settings.aboutblank;
+        preventCloseSwitch.checked = settings.preventclose;
         aboutBlankRedirect.value = settings.aboutblank_redirect;
         tabTitle.value = settings.tabtitle;
         tabIcon.value = settings.tabicon;
 
+        aboutBlankSwitch.addEventListener('change', (e) => {
+            if (aboutBlankSwitch.checked ? false : true) {
+                displayErr(aboutBlankRedirect, err[0], '');
+                aboutBlankRedirect.style.border = '';
+                aboutBlankRedirect.style.color = '';
+                aboutBlankRedirect.value = '';
+            }
+
+            aboutBlankRedirect.disabled = aboutBlankSwitch.checked ? false : true;
+        })
+
+        aboutBlankRedirect.disabled = aboutBlankSwitch.checked ? false : true;
+
         saveBtn.addEventListener('click', (e) => {
             updatedSettings.aboutblank = aboutBlankSwitch.checked;
+            updatedSettings.preventclose = preventCloseSwitch.checked;
             updatedSettings.tabtitle = tabTitle.value;
 
-            if (isURL(aboutBlankRedirect.value) || !aboutBlankRedirect.value) {
+            if (isURL(aboutBlankRedirect.value) && aboutBlankSwitch.checked) {
                 updatedSettings.aboutblank_redirect = aboutBlankRedirect.value;
             } else {
-                displayErr(aboutBlankRedirect, err[0], '\nThat is not a valid URL');
+                if (aboutBlankSwitch.checked) {
+                    if (!aboutBlankRedirect.value) {
+                        displayErr(aboutBlankRedirect, err[0], '\nPlease enter a url');
+                    } else {
+                        displayErr(aboutBlankRedirect, err[0], '\nThat is not a valid URL');
+                    }
+                }
+
+                updatedSettings.aboutblank_redirect = null;
             }
 
             if (isURL(tabIcon.value) || !tabIcon.value) {
@@ -56,16 +80,31 @@ if (window.location.pathname === '/settings') {
                 displayErr(tabIcon, err[1], '\nThat is not a valid URL');
             }
 
-            if (isURL(tabIcon.value) || !tabIcon.value && isURL(aboutBlankRedirect.value) || !aboutBlankRedirect.value) {
-                localStorage.setItem('settings', JSON.stringify(updatedSettings));
-                location.reload();
+            if (isURL(tabIcon.value) || !tabIcon.value) {
+                if (isURL(aboutBlankRedirect.value) && aboutBlankSwitch.checked) {
+                    localStorage.setItem('settings', JSON.stringify(updatedSettings));
+                    location.reload();
 
-                if (aboutBlankSwitch.checked) {
-                    var win = window.open('', document.title);
-                    toDataURL(`${window.location.protocol}//${window.location.host}/favicon.ico`, (data) => {
-                        win.document.write(`<style>* {margin: 0px; overflow: hidden;} iframe {width: 100vw; height: 100vh;}</style><iframe sandbox="allow-scripts allow-popups allow-same-origin allow-popups-to-escape-sandbox allow-orientation-lock allow-forms allow-modals allow-orientation-lock allow-presentation allow-top-navigation allow-top-navigation" src="${window.location.href}" frameborder="0px"></iframe><script>var icon = document.querySelector("link[rel='icon']");if (!icon) {icon = document.createElement('link');icon.rel = 'icon';}; icon.setAttribute('href', '${data}'); document.head.appendChild(icon); document.title = '${document.title}'; onbeforeunload = (e) => {e.preventDefault(); return e.returnValue = 'no';}</script>`);
-                    });
-                    window.location.href = settings.aboutblank_redirect;
+                    if (aboutBlankSwitch.checked && window === window.parent) {
+                        var win = window.open('', document.title);
+                        toDataURL(`${window.location.protocol}//${window.location.host}/favicon.ico`, (data) => {
+                            win.document.write(`<style>* {margin: 0px; overflow: hidden;} iframe {width: 100vw; height: 100vh;}</style><iframe sandbox="allow-scripts allow-popups allow-same-origin allow-popups-to-escape-sandbox allow-orientation-lock allow-forms allow-modals allow-orientation-lock allow-presentation allow-top-navigation allow-top-navigation" src="${window.location.href}" frameborder="0px"></iframe><script>var icon = document.querySelector("link[rel='icon']");if (!icon) {icon = document.createElement('link');icon.rel = 'icon';}; icon.setAttribute('href', '${data}'); document.head.appendChild(icon); document.title = '${document.title}'; onbeforeunload = (e) => {e.preventDefault(); return e.returnValue = 'no';}</script>`);
+                        });
+                        window.location.href = settings.aboutblank_redirect;
+                    }
+                } else {
+                    if (!aboutBlankSwitch.checked) {
+                        localStorage.setItem('settings', JSON.stringify(updatedSettings));
+                        location.reload();
+
+                        if (aboutBlankSwitch.checked && window === window.parent) {
+                            var win = window.open('', document.title);
+                            toDataURL(`${window.location.protocol}//${window.location.host}/favicon.ico`, (data) => {
+                                win.document.write(`<style>* {margin: 0px; overflow: hidden;} iframe {width: 100vw; height: 100vh;}</style><iframe sandbox="allow-scripts allow-popups allow-same-origin allow-popups-to-escape-sandbox allow-orientation-lock allow-forms allow-modals allow-orientation-lock allow-presentation allow-top-navigation allow-top-navigation" src="${window.location.href}" frameborder="0px"></iframe><script>var icon = document.querySelector("link[rel='icon']");if (!icon) {icon = document.createElement('link');icon.rel = 'icon';}; icon.setAttribute('href', '${data}'); document.head.appendChild(icon); document.title = '${document.title}'; onbeforeunload = (e) => {e.preventDefault(); return e.returnValue = 'no';}</script>`);
+                            });
+                            window.location.href = settings.aboutblank_redirect;
+                        }
+                    }
                 }
             }
         })
@@ -77,7 +116,9 @@ if (!localStorage.getItem('settings')) {
         aboutblank: false,
         aboutblank_redirect: null,
         tabtitle: null,
-        tabicon: null
+        tabicon: null,
+        tabcloakurl: null,
+        preventclose: false
     }))
 
     location.reload();
@@ -98,5 +139,12 @@ if (!localStorage.getItem('settings')) {
         }
 
         icon.setAttribute('href', settings.tabicon);
+    }
+
+    if (settings.preventclose) {
+        onbeforeunload = (e) => {
+            e.preventDefault();
+            return e.returnValue = 'no';
+        }
     }
 }

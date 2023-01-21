@@ -143,6 +143,14 @@ input:disabled {
   cursor: not-allowed;
 }
 
+input:disabled::placeholder {
+  color: rgba(255, 0, 0, 0.514);
+}
+
+input::placeholder {
+  transition: .5s;
+}
+
 button {
   background: none;
   font-family: inherit;
