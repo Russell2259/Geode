@@ -420,5 +420,10 @@ button:disabled {
 }
 
 .game-frame {
-  
+
+}
+
+.error {
+  color: rgba(255, 0, 0, 0.514);
+  font-size: 15px;
 }

@@ -34,18 +34,19 @@
             <span class="slider round"></span>
         </label>
         <p>Redirect url for about:blank mode</p>
-        <input type="text" name="about:blank redirect target" id="" placeholder="eg: https://google.com">
-
+        <input type="url" id="about-blank_redirect" placeholder="eg: https://google.com">
+        <span class="error"></span>
+        
         <h2 class="not-bold">Tab Cloaking</h2>
-        <input type="text" placeholder="Page Title">
+        <input type="url" id="page-title" placeholder="Page Title">
         <br>
         <br>
-        <input type="text" placeholder="Icon URL">
+        <input type="url" id="page-icon" placeholder="Icon URL">
+        <span class="error"></span>
+        <br>
+        <br>
 
-        <br>
-        <br>
-
-        <button disabled>Save</button>
+        <button id="save">Save</button>
     </div>
 
     <footer>
@@ -56,4 +57,5 @@
         <a title="The official repository for Geode" href="https://github.com/Russell2259/Geode">GitHub</a>
     </footer>
     <script src="/assets/js/tab.js"></script>
+    <script src="/assets/js/settings.js"></script>
 </body>

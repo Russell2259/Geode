@@ -17,11 +17,6 @@ function loadGame(gameId, isGameHub) {
     }
 }
 
-/*var newtab = window.open('', 'anotherWindow');
-console.log(newtab);
-newtab.document.write(`<style>* {margin: 0px; overflow: none;} iframe {width: 100vw; height: 100vh;}</style><iframe src="${window.location.href}/games" frameborder="0px"></iframe><script>onbeforeunload = (e) => {e.preventDefault(); return e.returnValue = 'no';}</script>`);
-window.location.href = 'https://google.com';*/
-
 fetch('/assets/JSON/gs.json')
     .then((res) => res.json())
     .then((games) => {
@@ -44,7 +39,7 @@ fetch('/assets/JSON/gs.json')
         console.log(e);
     })
 
-fetch('https://api.gh.retronetwork.ml/games')
+fetch('https://gamehubapi.onrender.com/games')
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
