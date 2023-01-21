@@ -33,6 +33,7 @@ address.addEventListener('input', (e) => {
       .then(bare => bare.json())
       .then(res => {
         console.log(response)
+        alert('res');
       })
       .catch(err => {
         throw new Error(err)
