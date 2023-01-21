@@ -6,10 +6,16 @@ const gameFrame = document.querySelector('.game-frame');
 var loaded = false;
 let loadedCount = 0;
 
+try {
+    await registerSW();
+} catch (e) {
+    alert('nooooo');
+}
+
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-        fetch(__uv$config.prefix + __uv$config.encodeUrl(`https://gamehubapi.onrender.com/games/${gameId}`)+'?hostname=gh.retronetwork.ml')
+        fetch(__uv$config.prefix + __uv$config.encodeUrl(`https://gamehubapi.onrender.com/games/${gameId}`) + '?hostname=gh.retronetwork.ml')
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
@@ -62,14 +68,15 @@ fetch(__uv$config.prefix + __uv$config.encodeUrl('https://gamehubapi.onrender.co
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
-
-            var gameEl = document.createElement('div');
-            gameEl.classList = 'game';
-            gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
-            document.querySelector('.games').appendChild(gameEl);
-            gameEl.addEventListener('click', (e) => {
-                loadGame(game.id, true);
+            toDataURL(__uv$config.prefix + __uv$config.encodeUrl(game.thumbnail), (thumbnail) => {
+                var gameEl = document.createElement('div');
+                gameEl.classList = 'game';
+                gameEl.title = game.name;
+                gameEl.innerHTML = `<img src="${thumbnail}"/><p>${game.name}</p>`;
+                document.querySelector('.games').appendChild(gameEl);
+                gameEl.addEventListener('click', (e) => {
+                    loadGame(game.id, true);
+                });
             });
         }
 
