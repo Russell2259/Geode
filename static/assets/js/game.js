@@ -1,6 +1,8 @@
 const searchBar = document.querySelector('#search');
 const gameDatabase = document.querySelector('.games');
 const loader = document.querySelector('.ring-loader');
+const gameFrameContainer = document.querySelector('.game-container');
+const gameFrame = document.querySelector('.game-frame');
 var loaded = false;
 let loadedCount = 0;
 
@@ -12,9 +14,17 @@ function loadGame(gameId, isGameHub) {
         fetch('/assets/JSON/gs.json')
             .then((res) => res.json())
             .then((games) => {
-                games[gameId]
+                if (games[gameId].use_proxy) {
+                    gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(games[gameId].path);
+                } else {
+                    gameFrame.src = games[gameId].path;
+                }
             });
     }
+
+    gameFrameContainer.classList.remove('is-hidden');
+    searchBar.classList.add('is-hidden');
+    document.querySelector('.content').style.marginTop = '0px';
 }
 
 fetch('/assets/JSON/gs.json')

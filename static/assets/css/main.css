@@ -427,8 +427,14 @@ button:disabled {
   }
 }
 
-.game-frame {
+.game-navigation {
+  height: 80px;
 
+}
+
+.game-frame {
+  width: 100%;
+  height: calc(100vh - 180px);
 }
 
 .error {
