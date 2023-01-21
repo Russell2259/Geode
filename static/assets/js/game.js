@@ -9,7 +9,13 @@ let loadedCount = 0;
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-
+        fetch(__uv$config.prefix + __uv$config.encodeUrl(`https://gamehubapi.onrender.com/games/${gameId}`)+'?hostname=gh.retronetwork.ml')
+            .then((res) => res.json())
+            .then((game) => {
+                gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
+            }).catch(e => {
+                throw `Failed to load game #${gameId} from GameHub`;
+            })
     } else {
         fetch('/assets/JSON/gs.json')
             .then((res) => res.json())
@@ -19,7 +25,9 @@ function loadGame(gameId, isGameHub) {
                 } else {
                     gameFrame.src = games[gameId].path;
                 }
-            });
+            }).catch(e => {
+                throw 'Failed to load local gs.json file';
+            })
     }
 
     gameFrameContainer.classList.remove('is-hidden');
@@ -49,7 +57,7 @@ fetch('/assets/JSON/gs.json')
         console.log(e);
     })
 
-fetch('https://gamehubapi.onrender.com/games')
+fetch(__uv$config.prefix + __uv$config.encodeUrl('https://gamehubapi.onrender.com/games'))
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
