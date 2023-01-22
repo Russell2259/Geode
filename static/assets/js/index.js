@@ -39,4 +39,5 @@ address.addEventListener('input', (e) => {
         throw new Error(err)
       });
   }
+  console.log('...')
 })

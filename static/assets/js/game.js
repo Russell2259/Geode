@@ -6,10 +6,22 @@ const gameFrame = document.querySelector('.game-frame');
 var loaded = false;
 let loadedCount = 0;
 
-try {
-    await registerSW();
-} catch (e) {
-    alert('nooooo');
+function toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            console.log(reader.result);
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.onerror = (e) => {
+        throw new Error(e);
+    }
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
 }
 
 function loadGame(gameId, isGameHub) {
@@ -47,14 +59,16 @@ fetch('/assets/JSON/gs.json')
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
 
-            var gameEl = document.createElement('div');
-            gameEl.classList = 'game';
-            gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
-            document.querySelector('.games').appendChild(gameEl);
-            gameEl.addEventListener('click', (e) => {
-                loadGame(i);
-            });
+            toDataURL(__uv$config.prefix + __uv$config.encodeUrl(game.thumbnail), (thumbnail) => {
+                var gameEl = document.createElement('div');
+                gameEl.classList = 'game';
+                gameEl.title = game.name;
+                gameEl.innerHTML = `<img src="${thumbnail}"/><p>${game.name}</p>`;
+                document.querySelector('.games').appendChild(gameEl);
+                gameEl.addEventListener('click', (e) => {
+                    loadGame(i);
+                });
+            })
         }
 
         loaded = true;

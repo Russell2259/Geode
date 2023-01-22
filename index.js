@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { join } from 'node:path';
 import * as url from 'url';
 import { createRequire } from 'module';
+import { createBareClient } from '@tomphttp/bare-client';
 
 const require = createRequire(import.meta.url);
 const path = require('path');
@@ -19,10 +20,13 @@ app.use(express.static(path.join(__dirname, './static/'), { extensions: ['html']
 
 app.use('/uv/', express.static(uvPath));
 
-app.use((req, res) => {
-    res.status(404);
-    res.sendFile(join(fileURLToPath(new URL('./static/', import.meta.url)), '/assets/templates/404.html'));
-});
+app.all('/files/*', async (req, res) => {
+    const client = await createBareClient(`${req.protocol}://${req.hostname}:9000/bare/`);
+
+    const response = await client.fetch(req.path.replace('/files/', ''));
+
+    res.send(await response.blob());
+})
 
 const server = createServer();
 
@@ -40,6 +44,11 @@ server.on('upgrade', (req, socket, head) => {
     } else {
         socket.end();
     }
+});
+
+app.use((req, res) => {
+    res.status(404);
+    res.sendFile(join(fileURLToPath(new URL('./static/', import.meta.url)), '/assets/templates/404.html'));
 });
 
 server.on('listening', () => {
