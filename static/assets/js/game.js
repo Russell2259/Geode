@@ -63,7 +63,7 @@ fetch('/assets/JSON/gs.json')
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
 
-            alert(game.thumbnail)
+            alert(game.thumbnail);
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
