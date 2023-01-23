@@ -67,6 +67,8 @@ fetch('/assets/JSON/gs.json')
             gameEl.addEventListener('click', (e) => {
                 loadGame(i);
             });
+
+            alert('/files/' + game.thumbail);
         }
 
         loaded = true;
@@ -81,7 +83,6 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
 
-            alert(game.thumbnail)
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
