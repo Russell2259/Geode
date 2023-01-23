@@ -74,7 +74,7 @@ fetch('/assets/JSON/gs.json')
         loaded = true;
         loadedCount += 1;
     }).catch((e) => {
-        console.log(e);
+        throw new Error(e);
     })
 
 fetch('/files/https://gamehubapi.onrender.com/games')
@@ -82,7 +82,7 @@ fetch('/files/https://gamehubapi.onrender.com/games')
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
-            toDataURL(__uv$config.prefix + __uv$config.encodeUrl(game.thumbnail), (thumbnail) => {
+            toDataURL(`/files/${game.thumbail}`, (thumbnail) => {
                 var gameEl = document.createElement('div');
                 gameEl.classList = 'game';
                 gameEl.title = game.name;
@@ -98,7 +98,7 @@ fetch('/files/https://gamehubapi.onrender.com/games')
         loadedCount += 1;
     }).catch((e) => {
         loadedCount += 1;
-        throw e;
+        throw new Error(e);
     })
 
 searchBar.addEventListener('input', (e) => {
