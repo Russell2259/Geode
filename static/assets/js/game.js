@@ -27,7 +27,7 @@ function toDataURL(url, callback) {
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-        fetch(proxy(`https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`))
+        fetch(`/files/https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`)
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
@@ -53,8 +53,8 @@ function loadGame(gameId, isGameHub) {
     document.querySelector('.content').style.marginTop = '0px';
 }
 
-function proxy(url) {
-    return `/files/${url}`
+function proxya(url) {
+    return `/files/${url}`;
 }
 
 fetch('/assets/JSON/gs.json')
@@ -63,11 +63,10 @@ fetch('/assets/JSON/gs.json')
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
 
-            alert(game.thumbnail);
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${proxy(game.thumbail)}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${`/files/${game.thumbail}`}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(i);
@@ -80,7 +79,7 @@ fetch('/assets/JSON/gs.json')
         throw new Error(e);
     })
 
-fetch(proxy('https://gamehubapi.onrender.com/games'))
+fetch('/files/https://gamehubapi.onrender.com/games')
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
@@ -90,7 +89,7 @@ fetch(proxy('https://gamehubapi.onrender.com/games'))
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${proxy(game.thumbail)}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${`/files/${game.thumbail}`}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(game.id, true);
