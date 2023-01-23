@@ -62,6 +62,8 @@ fetch('/assets/JSON/gs.json')
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
+
+            alert(game.thumbnail)
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
@@ -83,6 +85,8 @@ fetch(proxy('https://gamehubapi.onrender.com/games'))
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
+
+            alert(game.thumbnail)
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
