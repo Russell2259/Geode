@@ -27,7 +27,7 @@ function toDataURL(url, callback) {
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-        fetch(__uv$config.prefix + __uv$config.encodeUrl(`https://gamehubapi.onrender.com/games/${gameId}`) + '?hostname=gh.retronetwork.ml')
+        fetch(`/files/https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`)
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
@@ -59,7 +59,7 @@ fetch('/assets/JSON/gs.json')
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
 
-            toDataURL(__uv$config.prefix + __uv$config.encodeUrl(game.thumbnail), (thumbnail) => {
+            toDataURL(`/files/${game.thumbnail}`, (thumbnail) => {
                 var gameEl = document.createElement('div');
                 gameEl.classList = 'game';
                 gameEl.title = game.name;
@@ -77,7 +77,7 @@ fetch('/assets/JSON/gs.json')
         console.log(e);
     })
 
-fetch(__uv$config.prefix + __uv$config.encodeUrl('https://gamehubapi.onrender.com/games'))
+fetch('/files/https://gamehubapi.onrender.com/games')
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
