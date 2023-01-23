@@ -27,7 +27,7 @@ function toDataURL(url, callback) {
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-        fetch(`/files/https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`)
+        fetch(proxy(`https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`))
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
@@ -53,22 +53,23 @@ function loadGame(gameId, isGameHub) {
     document.querySelector('.content').style.marginTop = '0px';
 }
 
+function proxy(url) {
+    return `/files/${url}`
+}
+
 fetch('/assets/JSON/gs.json')
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
-
-            toDataURL(`/files/${game.thumbnail}`, (thumbnail) => {
-                var gameEl = document.createElement('div');
-                gameEl.classList = 'game';
-                gameEl.title = game.name;
-                gameEl.innerHTML = `<img src="${thumbnail}"/><p>${game.name}</p>`;
-                document.querySelector('.games').appendChild(gameEl);
-                gameEl.addEventListener('click', (e) => {
-                    loadGame(i);
-                });
-            })
+            var gameEl = document.createElement('div');
+            gameEl.classList = 'game';
+            gameEl.title = game.name;
+            gameEl.innerHTML = `<img src="${proxy(game.thumbail)}"/><p>${game.name}</p>`;
+            document.querySelector('.games').appendChild(gameEl);
+            gameEl.addEventListener('click', (e) => {
+                loadGame(i);
+            });
         }
 
         loaded = true;
@@ -77,20 +78,18 @@ fetch('/assets/JSON/gs.json')
         throw new Error(e);
     })
 
-fetch('/files/https://gamehubapi.onrender.com/games')
+fetch(proxy('https://gamehubapi.onrender.com/games'))
     .then((res) => res.json())
     .then((games) => {
         for (let i = 0; i < games.length; i++) {
             const game = games[i];
-            toDataURL(`/files/${game.thumbail}`, (thumbnail) => {
-                var gameEl = document.createElement('div');
-                gameEl.classList = 'game';
-                gameEl.title = game.name;
-                gameEl.innerHTML = `<img src="${thumbnail}"/><p>${game.name}</p>`;
-                document.querySelector('.games').appendChild(gameEl);
-                gameEl.addEventListener('click', (e) => {
-                    loadGame(game.id, true);
-                });
+            var gameEl = document.createElement('div');
+            gameEl.classList = 'game';
+            gameEl.title = game.name;
+            gameEl.innerHTML = `<img src="${proxy(game.thumbail)}"/><p>${game.name}</p>`;
+            document.querySelector('.games').appendChild(gameEl);
+            gameEl.addEventListener('click', (e) => {
+                loadGame(game.id, true);
             });
         }
 
