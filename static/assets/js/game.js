@@ -62,13 +62,13 @@ fetch('/assets/JSON/gs.json')
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${'/files/' + game.thumbail}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(i);
             });
 
-            alert('/files/' + game.thumbail);
+            alert('/files/' + game.thumbnail);
         }
 
         loaded = true;
@@ -86,7 +86,7 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${'/files/' + game.thumbail}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(game.id, true);
