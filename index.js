@@ -21,11 +21,18 @@ app.use(express.static(path.join(__dirname, './static/'), { extensions: ['html']
 app.use('/uv/', express.static(uvPath));
 
 app.all('/files/*', async (req, res) => {
-    const client = await createBareClient(`${req.protocol}://${req.hostname}:9000/bare/`);
+    let response = await fetch(req.path.replace('/files/', ''));
+    let blob = await response.blob();
+    let buffer = Buffer.from(await blob.blob());
+    res.send("data:" + blob.type + ';base64,' + buffer.toString('base64'));
+    /*const client = await createBareClient(`${req.protocol}://${req.hostname}:9000/bare/`);
 
     const response = await client.fetch(req.path.replace('/files/', ''));
 
-    res.send(await response.blob());
+    response.blob()
+    .then(data => {
+        res.send(Buffer.from(data.arrayBuffer()).toString('base64'));
+    })*/
 })
 
 const server = createServer();
