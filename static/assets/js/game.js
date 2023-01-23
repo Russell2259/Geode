@@ -53,10 +53,6 @@ function loadGame(gameId, isGameHub) {
     document.querySelector('.content').style.marginTop = '0px';
 }
 
-function proxya(url) {
-    return `/files/${url}`;
-}
-
 fetch('/assets/JSON/gs.json')
     .then((res) => res.json())
     .then((games) => {
