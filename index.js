@@ -21,7 +21,12 @@ app.use(express.static(path.join(__dirname, './static/'), { extensions: ['html']
 app.use('/uv/', express.static(uvPath));
 
 app.all('/files/*', async (req, res) => {
-    const client = await createBareClient(`${req.protocol}://${req.hostname}:9000/bare/`);
+    let client;
+    if (req.port) {
+        client = await createBareClient(`${req.protocol}://${req.hostname}:${req.port}/bare/`);
+    } else {
+        client = await createBareClient(`${req.protocol}://${req.hostname}/bare/`);
+    }
 
     const response = await client.fetch(req.path.replace('/files/', ''));
 
