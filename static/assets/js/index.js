@@ -19,7 +19,7 @@ form.addEventListener('submit', async (event) => {
 });
 
 address.addEventListener('input', (e) => {
-  if (!address.isURL(address.value) && address.value) {
+  if (!isURL(address.value) && address.value) {
     const options = {
       method: 'GET',
       headers: {
@@ -28,16 +28,18 @@ address.addEventListener('input', (e) => {
         'X-RapidAPI-Host': 'bing-web-search1.p.rapidapi.com'
       }
     };
-
-    fetch(`https://bing-web-search1.p.rapidapi.com/search?q=${address.value}&mkt=en-us&setLang=en-us&count=5&safeSearch=Strict&textFormat=Raw&freshness=Week`, options)
-      .then(bare => bare.json())
+    
+    fetch(`https://bing-web-search1.p.rapidapi.com/search?q=${adress.value}&mkt=en-us&safeSearch=Off&textFormat=Raw&freshness=Day`, options)
+      .then(res => res.json())
       .then(res => {
-        console.log(response)
-        alert('res');
+        for (let i = 0; i < 5; i++) {
+          const result = res.webPages.value[i];
+
+          
+        }
       })
-      .catch(err => {
-        throw new Error(err)
+      .catch(e => {
+        throw new Error(e);
       });
   }
-  console.log('...')
 })

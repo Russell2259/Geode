@@ -88,6 +88,9 @@ footer {
   display: flex;
   justify-content: left;
   align-items: center;
+  bottom: 0;
+  background: #111;
+  padding-left: 7%;
 }
 
 footer a,
@@ -131,6 +134,7 @@ input {
 input:focus {
   border: 1px solid rgba(253, 253, 253, 0.514);
   border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
 }
 
 input:focus:disabled {
@@ -172,6 +176,7 @@ button {
 button:hover {
   border: 1px solid rgba(253, 253, 253, 0.514);
   border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
 }
 
 button:hover:disabled {
@@ -444,4 +449,35 @@ button:disabled {
 
 .gamenav-right {
   float: right;
+}
+
+.pageframe {
+  height: 100vh;
+  width: 100%;
+}
+
+.search-results {
+  margin-top: 50px;
+  min-height: 40px;
+  width: 385px;
+  opacity: 0;
+  position: absolute;
+  transition: 1.6s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  background-color: #111;
+}
+
+#uv-address:focus + .search-results {
+  opacity: 1;
+}
+
+#uv-address:focus {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-item {
+  margin-top: calc(80px/6);
+  font-weight: lighter;
+  max-height: 80px;
 }

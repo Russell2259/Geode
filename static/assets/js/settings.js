@@ -35,9 +35,11 @@ if (window.location.pathname === '/settings') {
         const tabTitle = document.querySelector('#page-title');
         const tabIcon = document.querySelector('#page-icon');
         const preventCloseSwitch = document.querySelector('#prevent-close_switch');
+        const onePageSwitch = document.querySelector('#onepage_switch');
 
         aboutBlankSwitch.checked = settings.aboutblank;
         preventCloseSwitch.checked = settings.preventclose;
+        onePageSwitch.checked = settings.onepage;
         aboutBlankRedirect.value = settings.aboutblank_redirect;
         tabTitle.value = settings.tabtitle;
         tabIcon.value = settings.tabicon;
@@ -59,6 +61,7 @@ if (window.location.pathname === '/settings') {
             updatedSettings.aboutblank = aboutBlankSwitch.checked;
             updatedSettings.preventclose = preventCloseSwitch.checked;
             updatedSettings.tabtitle = tabTitle.value;
+            updatedSettings.onepage = onePageSwitch.checked;
 
             if (isURL(aboutBlankRedirect.value) && aboutBlankSwitch.checked) {
                 updatedSettings.aboutblank_redirect = aboutBlankRedirect.value;
@@ -118,7 +121,8 @@ if (!localStorage.getItem('settings')) {
         tabtitle: null,
         tabicon: null,
         tabcloakurl: null,
-        preventclose: false
+        preventclose: false,
+        onepage: false
     }))
 
     location.reload();
@@ -141,10 +145,30 @@ if (!localStorage.getItem('settings')) {
         icon.setAttribute('href', settings.tabicon);
     }
 
-    if (settings.preventclose) {
+    if (settings.preventclose && !window === window.parent) {
         onbeforeunload = (e) => {
             e.preventDefault();
             return e.returnValue = 'no';
+        }
+    }
+
+    if (settings.onepage && window === window.parent) {
+        if (window.location.pathname === '/') {
+            var framePath;
+
+            if (sessionStorage.getItem('frame_page')) {
+                framePath = sessionStorage.getItem('frame_page');
+            } else if (document.referrer) {
+                framePath = document.referrer;
+            } else {
+                framePath = '/';
+            }
+
+            console.log(document.referrer)
+
+            document.body.innerHTML = `<iframe class="pageframe" frameborder="0" src="${framePath}"></iframe>`;
+        } else {
+            window.location.href = '/';
         }
     }
 }

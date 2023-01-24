@@ -67,8 +67,6 @@ fetch('/assets/JSON/gs.json')
             gameEl.addEventListener('click', (e) => {
                 loadGame(i);
             });
-
-            alert('/files/' + game.thumbnail);
         }
 
         loaded = true;
