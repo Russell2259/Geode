@@ -29,7 +29,7 @@ address.addEventListener('input', (e) => {
       }
     };
     
-    fetch(`https://bing-web-search1.p.rapidapi.com/search?q=${adress.value}&mkt=en-us&safeSearch=Off&textFormat=Raw&freshness=Day`, options)
+    /*fetch(`https://bing-web-search1.p.rapidapi.com/search?q=${adress.value}&mkt=en-us&safeSearch=Off&textFormat=Raw&freshness=Day`, options)
       .then(res => res.json())
       .then(res => {
         for (let i = 0; i < 5; i++) {
@@ -40,6 +40,6 @@ address.addEventListener('input', (e) => {
       })
       .catch(e => {
         throw new Error(e);
-      });
+      });*/
   }
 })
