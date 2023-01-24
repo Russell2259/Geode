@@ -27,6 +27,7 @@ function toDataURL(url, callback) {
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
+        alert('._.')
         fetch('/files/' + `https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`)
             .then((res) => res.json())
             .then((game) => {
@@ -34,6 +35,7 @@ function loadGame(gameId, isGameHub) {
                 alert(__uv$config.prefix + __uv$config.encodeUrl(game.url));
             }).catch(e => {
                 throw new Error(`Failed to load game #${gameId} from GameHub`);
+                alert(':(')
             })
     } else {
         fetch('/assets/JSON/gs.json')
