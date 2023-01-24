@@ -23,8 +23,7 @@ app.use(
 app.use('/uv/', express.static(uvPath));
 
 app.all('/files/*', (req, res) => {
-  req
-    .pipe(request(req.path.replace('/files/', '')))
+  req.pipe(request(req.path.replace('/files/', '')), req.query)
     .on('error', function (err) {
       res.status(404);
     })
