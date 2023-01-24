@@ -31,8 +31,9 @@ function loadGame(gameId, isGameHub) {
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
+                alert(__uv$config.prefix + __uv$config.encodeUrl(game.url));
             }).catch(e => {
-                throw `Failed to load game #${gameId} from GameHub`;
+                throw new Error(`Failed to load game #${gameId} from GameHub`);
             })
     } else {
         fetch('/assets/JSON/gs.json')
@@ -44,7 +45,7 @@ function loadGame(gameId, isGameHub) {
                     gameFrame.src = games[gameId].path;
                 }
             }).catch(e => {
-                throw 'Failed to load local gs.json file';
+                throw new Error('Failed to load local gs.json file');
             })
     }
 
