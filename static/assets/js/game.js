@@ -28,7 +28,7 @@ function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
         alert('._.')
-        fetch('/files/' + `https://gamehubapi.onrender.com/games/${gameId}?hostname=gh.retronetwork.ml`)
+        fetch('/files/' + `https://gamehubapi.onrender.com/games/${gameId}?hostname=gamehub.onrender.com`)
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
@@ -37,6 +37,7 @@ function loadGame(gameId, isGameHub) {
                 throw new Error(`Failed to load game #${gameId} from GameHub`);
                 alert(':(')
             })
+            alert(`https://gamehubapi.onrender.com/games/${gameId}?hostname=gamehub.onrender.com`)
     } else {
         fetch('/assets/JSON/gs.json')
             .then((res) => res.json())
