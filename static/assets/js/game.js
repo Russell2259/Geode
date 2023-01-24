@@ -89,6 +89,7 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(game.id, true);
+                alert(game.id);
             });
         }
 
