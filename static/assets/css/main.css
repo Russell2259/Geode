@@ -224,50 +224,33 @@ button:disabled {
 }
 
 .game {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 10px;
-  cursor: pointer;
-  position: relative;
   border-radius: 10px;
   box-shadow: 2px 2px 8px var(--color-black-2);
-  background: none;
-  user-select: none;
-  transition: 0.5s;
-  object-fit: cover;
-  object-position: center;
-  width: 200px;
-  height: 200px;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.5;
-  text-size-adjust: 100%;
   box-sizing: inherit;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+  position: relative;
+  transition: .5s;
 }
 
 .game>img {
   width: 180px;
   height: 180px;
   padding: 10px;
-  user-select: none;
-  transition: 0.5s;
   object-fit: cover;
-  object-position: center;
-  box-sizing: inherit;
 }
 
 .game>p {
-  transition: 0.5s;
   text-align: center;
   border-radius: 0px 0px 10px 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   bottom: -16.3px;
-  right: 0px;
   position: absolute;
   width: 100%;
   background-color: var(--color-black-3);
-  color: var(--text-color);
 }
 
 .game:hover {
