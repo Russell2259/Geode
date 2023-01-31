@@ -28,6 +28,7 @@
 
 * {
   user-select: none;
+  transition: 0.5s;
 }
 
 body {
@@ -278,7 +279,6 @@ button:disabled {
   height: 70px;
   justify-content: left;
   overflow: hidden;
-  transition: 0.5s;
 }
 
 .nav.is-sticky {
