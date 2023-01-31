@@ -30,14 +30,14 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: var(--bg-color);
+    background-color: var(--text-color);
     -webkit-transition: .4s;
     transition: .4s;
     margin-bottom: -1px;
 }
 
 input[type=checkbox]:checked + .slider {
-    background-color: var(--bg-color);
+    background-color: var(--text-color);
 }
 
 input[type=checkbox]:focus + .slider {
