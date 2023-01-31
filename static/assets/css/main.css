@@ -1,5 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 
+:root, [data-theme="light"]{
+  --color-red: #ff6666;
+  --color-red-disabled: #ff000083;
+  --color-gray-1: #555555;
+  --color-gray-2: #333333;
+  --color-gray-3: #fdfdfd83;
+  --color-gray-4: #ffffff33;
+  --color-light-gray: #ffffffb3;
+  --color-black-1: #242425;
+  --color-black-2: #111;
+  --color-black-3: #0000009d;
+  --color-black-4: #000000e6;
+  --color-white: #fff;
+  --color-purple: #622d93;
+}
+
+:root {
+  --bg-color: var(--color-black-1);
+  --text-color: var(--color-white);
+}
+
+[data-theme="light"] {
+  --bg-color: var(--color-white);
+  --text-color: var(--color-black-1);
+}
+
 * {
   user-select: none;
 }
@@ -7,18 +33,18 @@
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
-  background: #111;
+  background: var(--bg-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .fa-magnifying-glass {
-  color: white;
+  color: var(--text-color);
 }
 
 .is-center {
@@ -37,19 +63,19 @@ body {
 }
 
 #uv-error {
-  color: #ff6666 !important;
+  color: var(--color-red) !important;
   white-space: pre-wrap;
 }
 
 #uv-error-code {
   font-size: 12px;
-  color: #fff;
+  color: var(--text-color);
   font-family: "Courier New", Courier, monospace;
 }
 
 #uv-register-sw {
-  color: white;
-  background: #555555;
+  color: var(--text-color);
+  background: var(--color-gray-1);
   cursor: pointer;
   outline: none;
   border: none;
@@ -60,7 +86,7 @@ body {
 }
 
 #uv-register-sw:active {
-  background: #333333;
+  background: var(--color-gray-2);
 }
 
 #uv-register-sw.show {
@@ -73,11 +99,11 @@ body {
 
 .logo-wrapper .text {
   font-size: 75px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .logo-wrapper h1 {
-  color: white;
+  color: var(--text-color);
 }
 
 footer {
@@ -89,7 +115,7 @@ footer {
   justify-content: left;
   align-items: center;
   bottom: 0;
-  background: #111;
+  background: var(--bg-color);
   padding-left: 7%;
 }
 
@@ -97,7 +123,7 @@ footer a,
 footer span {
   margin: 0 15px;
   text-decoration: none;
-  color: #fff;
+  color: var(--text-color);
   font-size: 15px;
 }
 
@@ -111,7 +137,7 @@ footer a:hover {
 
 .desc p {
   width: 560px;
-  color: rgba(253, 253, 253, 0.514);
+  color: var(--color-gray-3);
 }
 
 input {
@@ -119,22 +145,22 @@ input {
   font-family: inherit;
   padding: 0px 17px;
   height: 48px;
-  border: 1px solid rgb(255, 255, 255, 0.2);
+  border: 1px solid var(--color-gray-4);
   color: var(--text-color);
   border-radius: 3px;
   outline: none;
   width: 350px;
   margin-top: 5px;
   border-radius: 50px;
-  color: #fff;
+  color: var(--text-color);
   transition: .5s;
   margin: auto;
 }
 
 input:focus {
-  border: 1px solid rgba(253, 253, 253, 0.514);
+  border: 1px solid var(--color-gray-3);
   border-radius: 6px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  box-shadow: 2px 2px 8px var(--color-black-2);
 }
 
 input:focus:disabled {
@@ -142,13 +168,13 @@ input:focus:disabled {
 }
 
 input:disabled {
-  border: 1px solid rgba(255, 0, 0, 0.514);
-  color: rgba(255, 0, 0, 0.514);
+  border: 1px solid var(--color-red-disabled);
+  color: var(--color-red-disabled);
   cursor: not-allowed;
 }
 
 input:disabled::placeholder {
-  color: rgba(255, 0, 0, 0.514);
+  color: var(--color-red-disabled);
 }
 
 input::placeholder {
@@ -160,7 +186,7 @@ button {
   font-family: inherit;
   padding: 0px 17px;
   height: 48px;
-  border: 1px solid rgb(255, 255, 255, 0.2);
+  border: 1px solid var(--color-gray-4);
   color: var(--text-color);
   border-radius: 3px;
   outline: none;
@@ -168,15 +194,15 @@ button {
   padding-right: 40px;
   margin-top: 5px;
   border-radius: 50px;
-  color: #fff;
+  color: var(--text-color);
   transition: .5s;
   cursor: pointer;
 }
 
 button:hover {
-  border: 1px solid rgba(253, 253, 253, 0.514);
+  border: 1px solid var(--color-gray-3);
   border-radius: 6px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  box-shadow: 2px 2px 8px var(--color-black-2);
 }
 
 button:hover:disabled {
@@ -184,50 +210,9 @@ button:hover:disabled {
 }
 
 button:disabled {
-  border: 1px solid rgba(255, 0, 0, 0.514);
-  color: rgba(255, 0, 0, 0.514);
+  border: 1px solid var(--color-red-disabled);
+  color: var(--color-red-disabled);
   cursor: not-allowed;
-}
-
-.credit {
-  border-radius: 10px;
-  padding: 10px;
-  display: block;
-  border: #fff 1px solid;
-  color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-}
-
-.credit label {
-  margin-left: auto;
-  margin-right: 15px;
-}
-
-.credit a,
-.credit label {
-  color: white;
-  text-decoration: underline;
-  text-align: right;
-}
-
-.credit pre {
-  display: none;
-  width: 100%;
-}
-
-.credit label::after {
-  content: "show license";
-  cursor: pointer;
-}
-
-.credit input:checked+label::after {
-  content: "hide license";
-}
-
-.credit input:checked~pre {
-  display: block;
 }
 
 .games {
@@ -244,7 +229,7 @@ button:disabled {
   cursor: pointer;
   position: relative;
   border-radius: 10px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  box-shadow: 2px 2px 8px var(--color-black-2);
   background: none;
   user-select: none;
   transition: 0.5s;
@@ -280,56 +265,54 @@ button:disabled {
   right: 0px;
   position: absolute;
   width: 100%;
-  background-color: rgb(0, 0, 0, 0.9);
-  color: white;
+  background-color: var(--color-black-3);
+  color: var(--text-color);
 }
 
 .game:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--color-light-gray);
 }
 
-.navbar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.nav {
+  display: flex;
+  height: 70px;
+  justify-content: left;
   overflow: hidden;
-  background-color: #333;
+}
+
+.nav.is-sticky {
   position: sticky;
-  top: 0;
-  width: 100%;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
-  background: #111;
-  z-index: 100;
-  height: 100px;
 }
 
-.navbar-logo img {
-  width: 80px;
-  margin: auto;
-  padding: 5px;
-}
-
-.navbar-item.is-right {
-  float: right;
-}
-
-.navbar-item {
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
+.nav-item {
+  align-items: center;
+  color: var(--text-color);
+  display: flex;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   text-decoration: none;
-  margin-top: auto;
-  color: #fff;
-  font-size: 20px;
-  vertical-align: middle;
 }
 
-.navbar-item:hover {
-  background-color: #111;
+.nav-item:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  text-decoration: none;
 }
 
-.is-active {
-  background-color: #c3e9ef;
+.nav-item.is-active {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+.nav-logo {
+  height: 50px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.nav-logo .logo {
+  width: 50px;
 }
 
 .navbar-item.navbar-logo {
@@ -367,11 +350,11 @@ button:disabled {
   line-height: 150px;
   font-family: sans-serif;
   font-size: 20px;
-  color: #622d93;
+  color: var(--color-purple);
   letter-spacing: 4px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px #622d93;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+  text-shadow: 0 0 10px var(--color-purple);
+  box-shadow: 0 0 20px #00000080;
 }
 
 .ring-loader:before {
@@ -382,13 +365,13 @@ button:disabled {
   width: 100%;
   height: 100%;
   border: 3px solid transparent;
-  border-top: 3px solid #622d93;
-  border-right: 3px solid #622d93;
+  border-top: 3px solid var(--color-purple);
+  border-right: 3px solid var(--color-purple);
   border-radius: 50%;
   animation: animateC 2s linear infinite;
 }
 
-.ring-loader > span {
+.ring-loader>span {
   display: block;
   position: absolute;
   top: calc(50% - 2px);
@@ -400,16 +383,16 @@ button:disabled {
   animation: animate 2s linear infinite;
 }
 
-.ring-loader > span:before {
+.ring-loader>span:before {
   content: '';
   position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #622d93;
+  background: var(--color-purple);
   top: -6px;
   right: -8px;
-  box-shadow: 0 0 20px #622d93;
+  box-shadow: 0 0 20px var(--color-purple);
 }
 
 @keyframes animateC {
@@ -443,7 +426,7 @@ button:disabled {
 }
 
 .error {
-  color: rgba(255, 0, 0, 0.514);
+  color: var(--color-red-disabled);
   font-size: 15px;
 }
 
@@ -463,11 +446,11 @@ button:disabled {
   opacity: 0;
   position: absolute;
   transition: 1.6s;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+  box-shadow: 2px 2px 8px var(--color-black-2);
   background-color: #111;
 }
 
-#uv-address:focus + .search-results {
+#uv-address:focus+.search-results {
   opacity: 1;
 }
 
