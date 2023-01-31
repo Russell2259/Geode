@@ -281,6 +281,7 @@ button:disabled {
   overflow: hidden;
   transition: 0.5s;
   background-color: var(--bg-color);
+  transition: .5s;
 }
 
 .nav.is-sticky {
@@ -296,6 +297,7 @@ button:disabled {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   text-decoration: none;
+  transition: .5s;
 }
 
 .nav-item:hover {
