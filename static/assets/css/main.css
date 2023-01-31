@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 
-:root, [data-theme="light"]{
+:root,
+[data-theme="light"] {
   --color-red: #ff6666;
   --color-red-disabled: #ff000083;
   --color-gray-1: #555555;
@@ -28,7 +29,6 @@
 
 * {
   user-select: none;
-  transition: 0.5s;
 }
 
 body {
@@ -279,10 +279,14 @@ button:disabled {
   height: 70px;
   justify-content: left;
   overflow: hidden;
+  transition: 0.5s;
+  background-color: var(--bg-color);
 }
 
 .nav.is-sticky {
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 }
 
 .nav-item {
@@ -324,6 +328,10 @@ button:disabled {
 .content {
   margin-left: 15px;
   margin-top: 20px;
+}
+
+.content.has-navbar {
+  margin-top: 90px;
 }
 
 .not-bold {
