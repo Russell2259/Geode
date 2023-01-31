@@ -9,6 +9,8 @@
   --color-gray-3: #fdfdfd83;
   --color-gray-4: #ffffff33;
   --color-gray-5: #999;
+  --color-gray-6: #3C3C3C;
+  --color-gray-7: #C3C3C3;
   --color-light-gray: #ffffffb3;
   --color-black-1: #242425;
   --color-black-2: #111;
@@ -26,6 +28,7 @@
   --border-color: var(--color-gray-4);
   --shadow-color: var(--color-black-2);
   --switch-color: var(--color-black-2);
+  --color-secondary: var(--color-gray-6);
 }
 
 [data-theme="light"] {
@@ -34,6 +37,7 @@
   --border-color: var(--color-black-5);
   --shadow-color: var(--color-gray-5);
   --switch-color: var(--color-gray-5);
+  --color-secondary: var(--color-gray-7);
 }
 
 * {
@@ -349,7 +353,7 @@ button:disabled {
   width: 150px;
   height: 150px;
   background: transparent;
-  border: 3px solid #3c3c3c;
+  border: 3px solid var(--color-secondary);
   border-radius: 50%;
   text-align: center;
   line-height: 150px;
