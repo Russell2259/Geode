@@ -281,7 +281,7 @@ button:disabled {
   overflow: hidden;
   transition: 0.5s;
   background-color: var(--bg-color);
-  transition: .5s;
+  box-shadow: 2px 2px 8px var(--color-black-2);
 }
 
 .nav.is-sticky {
