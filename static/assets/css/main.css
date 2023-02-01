@@ -17,6 +17,7 @@
   --color-black-3: #0000009d;
   --color-black-4: #000000e6;
   --color-black-5: #00000033;
+  --color-black-6: #000000b3;
   --color-white: #fff;
   --color-purple: #622d93;
   --color-dark-blue: #434c5e;
@@ -29,6 +30,7 @@
   --shadow-color: var(--color-black-2);
   --switch-color: var(--color-black-2);
   --color-secondary: var(--color-gray-6);
+  --game-hover: var(--color-black-6);
 }
 
 [data-theme="light"] {
@@ -38,6 +40,7 @@
   --shadow-color: var(--color-gray-5);
   --switch-color: var(--color-gray-5);
   --color-secondary: var(--color-gray-7);
+  --game-hover: var(--color-light-gray);
 }
 
 * {
@@ -265,10 +268,11 @@ button:disabled {
   position: absolute;
   width: 100%;
   background-color: var(--color-black-3);
+  color: var(--color-white);
 }
 
 .game:hover {
-  background-color: var(--color-light-gray);
+  background-color: var(--game-hover);
 }
 
 .nav {
