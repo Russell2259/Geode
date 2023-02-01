@@ -30,7 +30,7 @@
   --shadow-color: var(--color-black-2);
   --switch-color: var(--color-black-2);
   --color-secondary: var(--color-gray-6);
-  --game-hover: var(--color-black-6);
+  --game-hover: var(--color-light-gray);
 }
 
 [data-theme="light"] {
@@ -40,7 +40,7 @@
   --shadow-color: var(--color-gray-5);
   --switch-color: var(--color-gray-5);
   --color-secondary: var(--color-gray-7);
-  --game-hover: var(--color-light-gray);
+  --game-hover: var(--color-black-6);
 }
 
 * {
