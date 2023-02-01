@@ -1,19 +1,18 @@
-const error = document.getElementById("uv-error");
-const errorCode = document.getElementById("uv-error-code");
-const registerButton = document.getElementById("uv-register-sw");
+function RegisterGeodeError(e) {
+  let notificationContainer = document.querySelector('.notifications');
 
-if (location.pathname.startsWith(__uv$config.prefix)) {
-  error.textContent = "Error: The service worker is not registered.";
-  registerButton.classList.add("show");
+  if (!notificationContainer) {
+    notificationContainer = document.createElement('div');
+    notificationContainer.classList = 'notifications';
+    document.body.appendChild(notificationContainer);
+  }
+
+  const error = document.createElement('div');
+
+
+  throw new Error(e);
 }
 
-registerButton.addEventListener("click", async () => {
-  try {
-    await registerSW();
-    location.reload();
-  } catch (err) {
-    error.textContent = "Failed to register service worker.";
-    errorCode.textContent = err.toString();
-    registerButton.classList.remove("show");
-  }
-});
+window.onerror = (e) => {
+  throw new RegisterGeodeError(e);
+}

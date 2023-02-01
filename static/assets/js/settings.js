@@ -36,6 +36,7 @@ if (window.location.pathname === '/settings') {
         const tabIcon = document.querySelector('#page-icon');
         const preventCloseSwitch = document.querySelector('#prevent-close_switch');
         const onePageSwitch = document.querySelector('#onepage_switch');
+        const themeSwitch = document.querySelector('#theme_switch');
 
         aboutBlankSwitch.checked = settings.aboutblank;
         preventCloseSwitch.checked = settings.preventclose;
@@ -43,6 +44,7 @@ if (window.location.pathname === '/settings') {
         aboutBlankRedirect.value = settings.aboutblank_redirect;
         tabTitle.value = settings.tabtitle;
         tabIcon.value = settings.tabicon;
+        themeSwitch.checked = settings.darktheme;
 
         aboutBlankSwitch.addEventListener('change', (e) => {
             if (aboutBlankSwitch.checked ? false : true) {
@@ -122,7 +124,8 @@ if (!localStorage.getItem('settings')) {
         tabicon: null,
         tabcloakurl: null,
         preventclose: false,
-        onepage: false
+        onepage: false,
+        darktheme: true
     }))
 
     location.reload();

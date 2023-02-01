@@ -473,3 +473,13 @@ button:disabled {
   font-weight: lighter;
   max-height: 80px;
 }
+
+.notifications {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  z-index: 9999999999999999999999;
+  background-color: var(--text-color);
+  margin-left: 50%;
+  margin-right: 50%;
+}
