@@ -10,6 +10,7 @@ function RegisterGeodeError(e) {
   const error = document.createElement('div');
   error.classList = 'notification error';
   error.innerHTML = `<span>${e.toString()}</span>`;
+  notificationContainer.appendChild(error);
 
 
   throw new Error(e);
