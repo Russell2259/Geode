@@ -484,6 +484,5 @@ button:disabled {
   position: absolute;
   z-index: 9999999999999999999999;
   background-color: var(--text-color);
-  margin-left: 50%;
-  margin-right: 50%;
+  margin: auto;
 }

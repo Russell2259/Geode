@@ -27,17 +27,13 @@ function toDataURL(url, callback) {
 function loadGame(gameId, isGameHub) {
     gameDatabase.classList.add('is-hidden');
     if (isGameHub) {
-        alert('._.')
         fetch('/files/' + `https://gamehubapi.onrender.com/games/${gameId}?hostname=gamehub.onrender.com`)
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
-                alert(__uv$config.prefix + __uv$config.encodeUrl(game.url));
             }).catch(e => {
                 throw new Error(`Failed to load game #${gameId} from GameHub`);
-                alert(':(')
             })
-            alert(`https://gamehubapi.onrender.com/games/${gameId}?hostname=gamehub.onrender.com`)
     } else {
         fetch('/assets/JSON/gs.json')
             .then((res) => res.json())
@@ -92,7 +88,6 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(game.id, true);
-                alert(game.id);
             });
         }
 
