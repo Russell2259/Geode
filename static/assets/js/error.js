@@ -9,9 +9,16 @@ function RegisterGeodeError(e) {
 
   const error = document.createElement('div');
   error.classList = 'notification error';
-  error.innerHTML = `<span>${e.toString()}</span>`;
+  if (e.message) {
+    error.innerHTML = `<span>${e.message.toString()}</span>`;
+  } else {
+    //error.innerHTML = `<span>${e}</span>`;
+  }
   notificationContainer.appendChild(error);
 
+  setTimeout(() => {
+    error.style.opacity = 0;
+  }, 2000);
 
   throw new Error(e);
 }

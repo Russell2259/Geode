@@ -4,6 +4,7 @@
 [data-theme="light"] {
   --color-red: #ff6666;
   --color-red-disabled: #ff000083;
+  --color-red-error: #ff66669d;
   --color-gray-1: #555;
   --color-gray-2: #333;
   --color-gray-3: #fdfdfd83;
@@ -479,25 +480,29 @@ button:disabled {
 }
 
 .notifications {
+  top: 50%;
   width: 20%;
-  height: auto;
   position: absolute;
-  z-index: 9999999999999999999999;
+  z-index: 9999;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: .5s;
 }
 
 .notifications > .notification {
-  margin: auto;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  max-width: 90%;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 20px;
   margin-top: 10px;
+  transition: .5s;
 }
 
 .notifications > .notification.error {
-  background: var(--color-red);
-  opacity: 0.9;
+  background: var(--color-red-error);
   color: var(--text-color);
+}
+
+.notifications > .notification::after {
+  width: 20px;
+  height: 20px;
+  background-color: var(--text-color);
 }
