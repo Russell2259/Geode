@@ -17,8 +17,7 @@
   "author": "",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@titaniumnetwork-dev/ultraviolet": "^1.0.5",
-    "@tomphttp/bare-server-node": "^1.2.2",
+    "easyviolet": "github:Russell2259/Easyviolet",
     "express": "^4.18.2",
     "request": "^2.88.2"
   },

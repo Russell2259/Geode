@@ -480,13 +480,14 @@ button:disabled {
 }
 
 .notifications {
-  top: 50%;
+  top: 1%;
   width: 20%;
   position: absolute;
   z-index: 9999;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: .5s;
+  height: 2%;
 }
 
 .notifications > .notification {
@@ -499,10 +500,7 @@ button:disabled {
 .notifications > .notification.error {
   background: var(--color-red-error);
   color: var(--text-color);
-}
-
-.notifications > .notification::after {
-  width: 20px;
-  height: 20px;
-  background-color: var(--text-color);
+  transition: .5s;
+  inline-size: 100%;
+  overflow-wrap: break-word;
 }

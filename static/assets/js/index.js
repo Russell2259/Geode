@@ -1,14 +1,25 @@
 const form = document.getElementById('uv-form');
 const address = document.getElementById('uv-address');
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+function search(input, template) {
+  try {
+      return new URL(input).toString();
+  } catch (e) {
+
+  }
 
   try {
-    await registerSW();
+      const url = new URL(`http://${input}`);
+      if (url.hostname.includes('.')) return url.toString();
   } catch (e) {
-    throw new RegisterGeodeError(e);
+
   }
+
+  return template.replace('%s', encodeURIComponent(input));
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
   const url = search(address.value, 'https://www.google.com/search?q=%s');
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);

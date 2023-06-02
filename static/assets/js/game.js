@@ -17,7 +17,7 @@ function toDataURL(url, callback) {
         reader.readAsDataURL(xhr.response);
     };
     xhr.onerror = (e) => {
-        throw new Error(e);
+        throw new RegisterGeodeError(e);
     }
     xhr.open('GET', url);
     xhr.responseType = 'blob';
@@ -31,20 +31,32 @@ function loadGame(gameId, isGameHub) {
             .then((res) => res.json())
             .then((game) => {
                 gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
+                gameFrame.setAttribute('onerror', `throw new RegisterGeodeError('Failed to load game #${gameId} from GameHub`);
+                if (gameFrame.contentDocument.includes('error')) {
+                    alert('bru');
+                }
             }).catch(e => {
-                throw new Error(`Failed to load game #${gameId} from GameHub`);
+                throw new RegisterGeodeError(`Failed to load game #${gameId} from GameHub`);
             })
     } else {
         fetch('/assets/JSON/gs.json')
             .then((res) => res.json())
             .then((games) => {
                 if (games[gameId].use_proxy) {
-                    gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(games[gameId].path);
+                    try {
+                        gameFrame.src = __uv$config.prefix + __uv$config.encodeUrl(games[gameId].path);
+                    } catch (e) {
+                        gameFrameContainer.classList.add('is-hidden');
+                        searchBar.classList.remove('is-hidden');
+                        gameDatabase.classList.remove('is-hidden');
+
+                        throw new RegisterGeodeError(`Failed to load the game ${games[gameId].name}`);
+                    }
                 } else {
                     gameFrame.src = games[gameId].path;
                 }
             }).catch(e => {
-                throw new Error('Failed to load local gs.json file');
+                throw new RegisterGeodeError('Failed to load local gs.json file');
             })
     }
 
@@ -62,7 +74,7 @@ fetch('/assets/JSON/gs.json')
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}" onerror="throw new RegisterGeodeError('Failed to load file: ${game.thumbnail}');"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(i);
@@ -72,7 +84,8 @@ fetch('/assets/JSON/gs.json')
         loaded = true;
         loadedCount += 1;
     }).catch((e) => {
-        throw new Error(e);
+        loadedCount += 1;
+        throw new RegisterGeodeError('Failed to load local games');
     })
 
 fetch('/files/' + 'https://gamehubapi.onrender.com/games')
@@ -84,7 +97,7 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
             var gameEl = document.createElement('div');
             gameEl.classList = 'game';
             gameEl.title = game.name;
-            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}"/><p>${game.name}</p>`;
+            gameEl.innerHTML = `<img src="${'/files/' + game.thumbnail}" onerror="throw new RegisterGeodeError('Failed to load file: ${game.thumbnail}'); this.src='/assets/img/'"/><p>${game.name}</p>`;
             document.querySelector('.games').appendChild(gameEl);
             gameEl.addEventListener('click', (e) => {
                 loadGame(game.id, true);
@@ -95,7 +108,7 @@ fetch('/files/' + 'https://gamehubapi.onrender.com/games')
         loadedCount += 1;
     }).catch((e) => {
         loadedCount += 1;
-        throw new Error(e);
+        throw new RegisterGeodeError('Failed to load games from GameHub');
     })
 
 searchBar.addEventListener('input', (e) => {

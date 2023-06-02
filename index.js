@@ -1,70 +1,19 @@
-import createBareServer from '@tomphttp/bare-server-node';
+import Easyviolet from 'easyviolet';
 import express from 'express';
-import { createServer } from 'node:http';
-import { uvPath } from '@titaniumnetwork-dev/ultraviolet';
-import { fileURLToPath } from 'url';
-import { join } from 'node:path';
-import * as url from 'url';
-import { createRequire } from 'module';
+import path from 'node:path';
+import url from 'node:url';
+import fs from 'node:fs';
 
-const require = createRequire(import.meta.url);
-const path = require('path');
-const request = require('request');
-
-const bare = createBareServer('/bare/');
 const app = express();
-
+const ultraviolet = new Easyviolet({
+  codec: 'plain'
+});
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-app.use(
-  express.static(path.join(__dirname, './static/'), { extensions: ['html'] })
-);
+app.use(ultraviolet.express(app));
+app.use(express.static(path.join(__dirname, './static/'), { extensions: ['html'] }));
+app.use((req, res) => res.send(fs.readFileSync(path.join(__dirname,'/static/assets/templates/404.html'))).status(404));
 
-app.use('/uv/', express.static(uvPath));
-
-app.all('/files/*', (req, res) => {
-  req.pipe(request(req.path.replace('/files/', '')), req.query)
-    .on('error', function (err) {
-      res.status(404);
-    })
-    .pipe(res);
-});
-
-const server = createServer();
-
-server.on('request', (req, res) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeRequest(req, res);
-  } else {
-    app(req, res);
-  }
-});
-
-server.on('upgrade', (req, socket, head) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeUpgrade(req, socket, head);
-  } else {
-    socket.end();
-  }
-});
-
-app.use((req, res) => {
-  res.status(404);
-  res.sendFile(
-    join(
-      fileURLToPath(new URL('./static/', import.meta.url)),
-      '/assets/templates/404.html'
-    )
-  );
-});
-
-server.on('listening', () => {
-  const address = server.address();
-  console.log(
-    `Your Geode proxy is up and running on port ${address.port}, using NodeJS version ${process.version}`
-  );
-});
-
-server.listen({
-  port: 9000,
+const server = app.listen(9000, () => {
+  console.log(`Your Geode proxy is up and running on port ${server.address().port}, using NodeJS version ${process.version}`);
 });
