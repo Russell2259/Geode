@@ -5,9 +5,7 @@ import url from 'node:url';
 import fs from 'node:fs';
 
 const app = express();
-const ultraviolet = new Easyviolet({
-  codec: 'plain'
-});
+const ultraviolet = new Easyviolet();
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 app.use(ultraviolet.express(app));
